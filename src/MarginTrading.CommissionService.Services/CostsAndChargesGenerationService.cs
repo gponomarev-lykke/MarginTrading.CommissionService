@@ -65,7 +65,8 @@ namespace MarginTrading.CommissionService.Services
             var overnightSwapRate = await _rateSettingsService.GetOvernightSwapRate(instrument);
             var variableRateBase = _interestRatesCacheService.GetRate(overnightSwapRate.VariableRateBase);
             var variableRateQuote = _interestRatesCacheService.GetRate(overnightSwapRate.VariableRateQuote);
-            var units = 5000 / anticipatedExecutionPrice.Value * fxRate;
+            var units = (int) Math.Round(5000 / anticipatedExecutionPrice.Value * fxRate);
+            units = units == 0 ? 1 : units;
             var transactionVolume = units * anticipatedExecutionPrice.Value;
 
             var entryConsorsDonation = -(1 - tradingInstrument.HedgeCost)
