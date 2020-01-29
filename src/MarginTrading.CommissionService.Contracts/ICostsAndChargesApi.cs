@@ -35,6 +35,6 @@ namespace Lykke.MarginTrading.CommissionService.Contracts
         Task<PaginatedResponseContract<FileContract>> GetByDay(DateTime? date, int? skip, int? take);
 
         [Post("/api/costsAndCharges/pdf-by-ids")]
-        Task<byte[]> GenerateBafinCncReport(string accountId, [Body, CanBeNull] string[] ids);
+        Task<FileContract[]> GenerateBafinCncReport(string accountId, [Body, CanBeNull] string[] ids);
     }
 }
